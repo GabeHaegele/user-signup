@@ -19,18 +19,19 @@ def valid():
     email = request.form['email']
     email_error = ''
 
-    if  username == ''                                                        
+    if  (username.strip() == ""):                                                        
         username_error = "Username is required."
-    if  ' ' in username:                                      
+    else:
+        if  ' ' in username:                                      
+            username_error = 'No spaces are allowed.'
+        if len(username) > 20:
+            username_error = 'Maximum number of characters allowed is 20.'
+
+        if len(username) < 3:
+            username_error = "A minimum of 3 characters is required."
+
+    if  ' ' in password:                                      
         username_error = 'No spaces are allowed.'
-    if len(username) > 20:
-        username_error = 'Maximum number of characters allowed is 20.'
-
-    if len(username) < 3:
-        username_error = "A minimum of 3 characters is required."
-
-    if ' ' in username:                                         
-       password_error = 'No spaces are allowed.'
     if len(password) > 20:
         password_error = 'Passwords cannot exceed 20 characters.'
     if len(password) < 1:                                                   
